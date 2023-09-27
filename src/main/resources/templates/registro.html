@@ -13,25 +13,12 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
+	crossorigin="anonymous">	 
 </head>
 <body>
 
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registro Nuevo Usuario</a>
-			</div>
-		</div>
-	</nav>
+	<main layout:fragment="contenido">
 
 	<br>
 	<br>
@@ -44,7 +31,7 @@
 						la aplicación</div>
 				</div>
 
-				<h1>Regístrate</h1>
+				<h1 style="text-align: center;">Nuevo Usuario</h1>
 				<form th:action="@{/registro}" method="post" th:object="${usuario}">
 					<div class="form-group">
 						<label class="control-label" for="nombre">Nombre : </label> <input
@@ -70,7 +57,7 @@
 							required autofocus="autofocus">
 					</div>
 
-					<div class="form-group">
+					<div class="form-group" style="text-align: center;">
 						<button type="submit" class="btn btn-success">Registrar</button>
 						<a class="btn btn-warning" th:href="@{/}">Volver</a>
 						
@@ -80,13 +67,14 @@
 			</div>
 		</div>
 	</div>
-
+	</main>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+		
 </body>
 </html>
 

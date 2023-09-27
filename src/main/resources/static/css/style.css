@@ -4,3 +4,19 @@ body {
     /*Para la barra inferior fija*/
     padding-bottom: 70px;
 }
+
+.fondoPrincipal{
+    background-image: url('/images/logoblanco.png');
+    height:100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+
+
+.banner{
+    background-image: url('/images/banner.png');
+    height:10%;
+   
+    background-repeat: no-repeat;
+}

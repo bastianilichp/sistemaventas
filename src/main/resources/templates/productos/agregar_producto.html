@@ -4,13 +4,8 @@
 
 <head>
 	<meta charset="utf-8">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 
@@ -25,7 +20,7 @@
 				<div class="form-group">
 					<label for="nombre">Nombre del producto</label>
 					<input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
-						placeholder="Escribe el nombre del producto" type="text" class="form-control"
+						placeholder="Escribe el nombre del producto" type="text" class="form-control" required
 						th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
 					<div class="invalid-feedback" th:errors="*{nombre}"></div>
 				</div>
@@ -40,7 +35,7 @@
 				<div class="form-group">
 					<label for="stock">Stock Actual</label>
 					<input autocomplete="off" th:field="*{stock}" id="stock" placeholder="Cantidad actual del producto"
-						type="number" class="form-control"
+						type="number" class="form-control" required
 						th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid' : ''">
 					<div class="invalid-feedback" th:errors="*{stock}"></div>
 
@@ -48,7 +43,7 @@
 				<div class="form-group">
 					<label for="precioCompra">Precio Compra</label>
 					<input autocomplete="off" th:field="*{precioCompra}" id="precioCompra" placeholder="Precio Compra"
-						type="number" class="form-control"
+						type="number" class="form-control" required
 						th:classappend="${#fields.hasErrors('precioCompra')} ? 'is-invalid' : ''">
 					<div class="invalid-feedback" th:errors="*{precioCompra}"></div>
 
@@ -57,7 +52,7 @@
 				<div class="form-group">
 					<label for="precioVenta">Precio Venta</label>
 					<input autocomplete="off" th:field="*{precioVenta}" id="precioVenta" placeholder="Precio Venta"
-						type="number" class="form-control"
+						type="number" class="form-control" required
 						th:classappend="${#fields.hasErrors('precioVenta')} ? 'is-invalid' : ''">
 					<div class="invalid-feedback" th:errors="*{precioVenta}"></div>
 

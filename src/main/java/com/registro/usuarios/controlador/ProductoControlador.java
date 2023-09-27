@@ -1,6 +1,10 @@
 package com.registro.usuarios.controlador;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.registro.usuarios.modelo.Producto;
 import com.registro.usuarios.repositorio.ProductosRepositorio;
+import com.registro.usuarios.servicio.ProductoServicio;
 
 
 
@@ -24,6 +29,9 @@ public class ProductoControlador {
 	
 	
 	 private ProductosRepositorio productosRepositorio;	 
+	 
+	 @Autowired
+	 private ProductoServicio productoServicio;
 	 
 	 public ProductoControlador(ProductosRepositorio productosRepositorio) {
 		super();
@@ -37,10 +45,15 @@ public class ProductoControlador {
 	    }
 
 	    @GetMapping(value = "/mostrar")
-	    public String mostrarProductos(Model model) {
-	        model.addAttribute("productos", productosRepositorio.findAll());
+	    public String mostrarProductos(Model model, @Param("palabraClave") String palabraClave) {
+	    	List<Producto> productos = productoServicio.listAll(palabraClave);
+	    	model.addAttribute("productos", productos);   
+			model.addAttribute("palabraClave", palabraClave);    
+	     
 	        return "productos/ver_productos";
 	    }
+
+	
 	    
 	    @PostMapping(value = "/eliminar")
 	    public String eliminarProducto(@ModelAttribute Producto producto, RedirectAttributes redirectAttrs) {
@@ -51,6 +64,9 @@ public class ProductoControlador {
 	        return "redirect:/productos/mostrar";
 	    }
 	    
+	    
+
+			
 	    @PostMapping(value = "/editar/{id}")
 	    public String actualizarProducto(@ModelAttribute @Validated Producto producto, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
 	        if (bindingResult.hasErrors()) {
