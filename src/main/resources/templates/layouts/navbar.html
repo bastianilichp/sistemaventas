@@ -4,25 +4,30 @@
 	<div id="menu">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/vender/}">VENDER</a>
+				<a class="nav-link" th:href="@{/vender/}">PUNTO DE VENTA</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/productos/mostrar}">PRODUCTOS</a>
+				<a class="nav-link" th:href="@{/productos/mostrar/}">STOCK PRODUCTOS</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/ventas/}">VENTAS</a>
-			</li>
-	
-
-			
+				<a class="nav-link" th:href="@{/ventas/}">DETALLE VENTAS</a>
+			</li>			
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/registro/}">NUEVO USUARIO</a>
-			</li>				
+			</li>	
+		
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+		
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			 &nbsp; &nbsp; &nbsp; &nbsp;  
+			 <a class="nav-link floar-right" sec:authorize="isAuthenticated()" th:href="@{/logout}">
+				Cerrar Sesión</a>			
 		</ul>	
 		 <form>
-			  <li class="navbar-text" sec:authorize="isAuthenticated()"><a
-					th:href="@{/logout}">Cerrar
-					sesión</a></li>
+			 	
 		 </form>
 					
     

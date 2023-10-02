@@ -13,7 +13,7 @@
 
 	<main layout:fragment="contenido">
 		<div class="col-12">
-			<h2>Vender</h2>
+			<h2>Punto de Venta</h2>
 			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
 				th:text="${mensaje}" class="alert">
 			</div>
@@ -60,7 +60,7 @@
 					</tbody>
 					
 				</table>
-				<h1 style="text-align:right;" th:text="${'Total: ' + total}"></h1>
+				<h1 style="text-align:right;" th:text="${'TOTAL: ' + total}"></h1>
 				<form class="mb-2" th:action="@{/vender/terminar}" method="post" style="text-align: right;">
 					<button type="submit" class="btn btn-success">Pagar<i class="fa fa-check"></i>
 					</button>

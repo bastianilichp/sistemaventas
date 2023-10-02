@@ -1,6 +1,9 @@
 package com.registro.usuarios.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +16,11 @@ import com.registro.usuarios.repositorio.ProductosRepositorio;
 import com.registro.usuarios.repositorio.ProductosVendidosRepositorio;
 import com.registro.usuarios.repositorio.VentasRepositorio;
 import com.registro.usuarios.servicio.ProductoParaVender;
+import com.registro.usuarios.servicio.ProductoServicio;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 @Controller
@@ -26,6 +32,9 @@ public class VenderControlador {
     private VentasRepositorio ventasRepository;
     @Autowired
     private ProductosVendidosRepositorio productosVendidosRepository;
+    
+    @Autowired
+	 private ProductoServicio productoServicio;
 
     @PostMapping(value = "/quitar/{indice}")
     public String quitarDelCarrito(@PathVariable int indice, HttpServletRequest request) {
@@ -51,7 +60,7 @@ public class VenderControlador {
     }
 
     @PostMapping(value = "/terminar")
-    public String terminarVenta(HttpServletRequest request, RedirectAttributes redirectAttrs) {
+    public String terminarVenta(HttpServletRequest request, RedirectAttributes redirectAttrs) throws Exception {
         ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
         // Si no hay carrito o está vacío, regresamos inmediatamente
         if (carrito == null || carrito.size() <= 0) {
@@ -72,6 +81,12 @@ public class VenderControlador {
             // Y lo guardamos
             productosVendidosRepository.save(productoVendido);
         }
+        ByteArrayInputStream stream = productoServicio.exportarExcel();
+    	
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.add("Content-Disposition", "attachment; filename=stock_productos.xls");
+    	
+    	
 
         // Al final limpiamos el carrito
         this.limpiarCarrito(request);
@@ -85,7 +100,7 @@ public class VenderControlador {
     @GetMapping(value = "/")
     public String interfazVender(Model model, HttpServletRequest request) {
         model.addAttribute("producto", new Producto());
-        float total = 0;
+        Integer total = 0;
         ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
         for (ProductoParaVender p: carrito) total += p.getTotal();
         model.addAttribute("total", total);
