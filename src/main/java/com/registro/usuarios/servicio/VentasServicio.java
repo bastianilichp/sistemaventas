@@ -41,21 +41,24 @@ public class VentasServicio {
 		List<Venta> ventas = ventasRepositorio.findAll();
 		int numFila = 1;
 		for (Venta venta : ventas) {
-			row = sheet.createRow(numFila);
-			row.createCell(0).setCellValue(venta.getFechaYHora());
 			
 			for (ProductoVendido vp : venta.getProductos()) {
+				row = sheet.createRow(numFila);
+				row.createCell(0).setCellValue(vp.getVenta().getFechaYHora());
 				row.createCell(1).setCellValue(vp.getCodigo());
 				row.createCell(2).setCellValue(vp.getNombre());	
 				row.createCell(3).setCellValue(vp.getCantidad());	
 				row.createCell(4).setCellValue(vp.getPrecio());	
+				row.createCell(5).setCellValue(vp.getTotal());
+				
+				numFila++;
 			}
 //			row.createCell(1).setCellValue(venta.getCodigo());
 //			row.createCell(2).setCellValue(venta.getNombre());
-			row.createCell(5).setCellValue(venta.getTotal());
 			
 			
-			numFila++;
+			
+			
 		}
 			
 		workbook.write(stream);
