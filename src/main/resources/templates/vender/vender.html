@@ -48,7 +48,8 @@
 							<td th:text="${producto.nombre}"></td>
 							<td th:text="${producto.codigo}"></td>
 							<td th:text="${producto.precioVenta}"></td>
-							<td th:text="${producto.cantidad}"></td>
+							<td th:text="${producto.cantidad}">/td>
+							
 							<td th:text="${producto.total}"></td>
 							<td>
 								<form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
@@ -60,15 +61,27 @@
 					</tbody>
 					
 				</table>
+				<table align="right">
+					<tr>
 				<h1 style="text-align:right;" th:text="${'TOTAL: ' + total}"></h1>
+				</tr>
+				<tr>
 				<form class="mb-2" th:action="@{/vender/terminar}" method="post" style="text-align: right;">
+					<td>
 					<button type="submit" class="btn btn-success">Pagar<i class="fa fa-check"></i>
 					</button>
+					</td>
+					<td>
 					<a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancelar venta&nbsp;<i
 							class="fa fa-trash"></i>
 					</a>
+					</td>
+						<td>
 					<a class="btn btn-warning" th:href="@{/}">Volver</a>
+					</td>
 				</form>
+				</tr>
+				</table>
 				
 			</div>
 		</div>

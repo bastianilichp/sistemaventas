@@ -28,8 +28,8 @@ public class Venta {
 	        this.id = id;
 	    }
 
-	    public Float getTotal() {
-	        Float total = 0f;
+	    public Integer getTotal() {
+	    	Integer total = 0;
 	        for (ProductoVendido productoVendido : this.productos) {
 	            total += productoVendido.getTotal();
 	        }

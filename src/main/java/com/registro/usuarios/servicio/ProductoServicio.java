@@ -32,6 +32,7 @@ public class ProductoServicio {
 		return productoRepositorio.findAll();
 	}
 	
+	
 	public ByteArrayInputStream exportarExcel() throws Exception {
 		String[] columnas = { "Codigo Barra", "Descripción", "Precio Compra", "Precio Venta", "Stock" };
 		
@@ -66,5 +67,6 @@ public class ProductoServicio {
 		
 	}
 	
+
 
 }

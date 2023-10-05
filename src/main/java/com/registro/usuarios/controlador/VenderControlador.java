@@ -26,6 +26,7 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping(path = "/vender")
 public class VenderControlador {
+	
     @Autowired
     private ProductosRepositorio productosRepository;
     @Autowired
@@ -99,7 +100,7 @@ public class VenderControlador {
 
     @GetMapping(value = "/")
     public String interfazVender(Model model, HttpServletRequest request) {
-        model.addAttribute("producto", new Producto());
+    	model.addAttribute("producto", new Producto());
         Integer total = 0;
         ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
         for (ProductoParaVender p: carrito) total += p.getTotal();

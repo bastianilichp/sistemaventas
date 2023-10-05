@@ -1,28 +1,16 @@
-var app = {
-	
-	init : function(){	
-		app.initDatatable('#productosTable');
-	},
-	initDatatable : function(id){
-		$(id).DataTable({
-			
-			ajax : {
-				url : '/productos/mostrar',
-				dataSrc : function(json){
-					return json;
-				}
-			},
-			columns : [
-				{data: "nombre"},
-				{data: "codigo"},
-				{data: "precioCompra"},
-				{data: "precioVenta"},
-				{data: "stock"}			
+$(document).ready( function () {
+	 var table = $('#productosTabla').DataTable({
+			"sAjaxSource": "/listado",
+			"sAjaxDataProp": "",
+			"order": [[ 0, "asc" ]],
+			"aoColumns": [
+			  
+		    { "mData": "codigo" },				  
+			{ "mData": "nombre" },
+			{ "mData": "precioCompra" },
+			{ "mData": "precioVenta" },
+			{ "mData": "stock" }
+				 
 			]
-			
-		});
-	}
-};
-$(document).ready(function(){
-	app.init();
+	 })
 });
