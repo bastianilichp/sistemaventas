@@ -13,7 +13,7 @@ public class Utiles {
 
 	public static String obtenerFechaYHoraActual() {
 		TimeZone myTimeZone = TimeZone.getTimeZone("America/Santiago");
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		simpleDateFormat.setTimeZone(myTimeZone);
 		String dateTime = simpleDateFormat.format(new Date());	
 
