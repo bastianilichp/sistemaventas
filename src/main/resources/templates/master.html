@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="es" xmlns:th="http://www.w3.org/1991/xhtml">
 
 <head th:replace="layouts/encabezado :: encabezado"></head>
 
 <body class="fondoPrincipal">
-	<nav th:replace="layouts/navbar :: navbar">
-	</nav>
+	<div th:replace="layouts/navbar :: navbar"></div>
 	<main layout:fragment="contenido" role="main" class="container"></main>
 	
+	
+
 	<footer th:replace="layouts/pie :: pie"></footer>
 </body>
 

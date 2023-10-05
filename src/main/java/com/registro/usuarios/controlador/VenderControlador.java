@@ -103,7 +103,12 @@ public class VenderControlador {
     	model.addAttribute("producto", new Producto());
         Integer total = 0;
         ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
-        for (ProductoParaVender p: carrito) total += p.getTotal();
+        for (ProductoParaVender p: carrito) {        	      	
+        		total += p.getTotal();
+        	      	
+        }
+        	
+        	
         model.addAttribute("total", total);
         return "vender/vender";
     }
@@ -151,4 +156,22 @@ public class VenderControlador {
         this.guardarCarrito(carrito, request);
         return "redirect:/vender/";
     }
+    
+    @PostMapping(value = "/cantidad/{indice}")   
+    public String sumarCantidad(@RequestParam("cantidad") int cantidad,  HttpServletRequest request, @PathVariable int indice) {
+    	
+    	ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
+    	carrito.get(indice).setCantidad(cantidad); 	
+    	this.guardarCarrito(carrito, request);
+    	return "redirect:/vender/";    	
+    }
+    
+    @PostMapping(value = "/total/{indice}")   
+    public String sumarTotal(@RequestParam("total") int total,  HttpServletRequest request,@PathVariable int indice) {    	
+    	ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
+    	carrito.get(indice).setTotalModificado(total);
+    	this.guardarCarrito(carrito, request);
+    	return "redirect:/vender/";    	
+    }
+    
 }

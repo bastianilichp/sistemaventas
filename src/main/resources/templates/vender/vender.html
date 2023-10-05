@@ -4,16 +4,16 @@
 
 <head>
 	<meta charset="utf-8">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
-		 <!-- Navigation -->
+<body style="background-color: whitesmoke;">
+	<!-- Navigation -->
 
 	<main layout:fragment="contenido">
 		<div class="col-12">
-			<h2>Punto de Venta</h2>
+			<h1>Punto de Venta</h1>
 			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
 				th:text="${mensaje}" class="alert">
 			</div>
@@ -32,7 +32,7 @@
 			<br>
 			<br>
 			<div class="table-responsive">
-				<table class="table table-bordered">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>Nombre</th>
@@ -48,9 +48,16 @@
 							<td th:text="${producto.nombre}"></td>
 							<td th:text="${producto.codigo}"></td>
 							<td th:text="${producto.precioVenta}"></td>
-							<td th:text="${producto.cantidad}">/td>
-							
+							<td>
+								<form th:action="@{/vender/cantidad/} + ${iterador.index}" method="post">
+									<input style="width: 30%;" type="number" id="cantidad" name="cantidad" autofocus
+										autocomplete="on" maxlength="2" min="1" max="99" th:value="${producto.cantidad}"
+										method="post" />
+								</form>
+							</td>
 							<td th:text="${producto.total}"></td>
+
+
 							<td>
 								<form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
 									<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
@@ -59,30 +66,36 @@
 							</td>
 						</tr>
 					</tbody>
-					
+
 				</table>
-				<table align="right">
+				<table class="table table-border" style="text-align: right;">
+
 					<tr>
-				<h1 style="text-align:right;" th:text="${'TOTAL: ' + total}"></h1>
-				</tr>
-				<tr>
-				<form class="mb-2" th:action="@{/vender/terminar}" method="post" style="text-align: right;">
-					<td>
-					<button type="submit" class="btn btn-success">Pagar<i class="fa fa-check"></i>
-					</button>
-					</td>
-					<td>
-					<a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancelar venta&nbsp;<i
-							class="fa fa-trash"></i>
-					</a>
-					</td>
 						<td>
-					<a class="btn btn-warning" th:href="@{/}">Volver</a>
-					</td>
-				</form>
-				</tr>
+							
+							<h3 style="text-align: right;" th:text="${'TOTAL: ' + total}">
+							</h3>
+
+						</td>
+
+					</tr>
 				</table>
-				
+
+
+				<form class="mb-2" th:action="@{/vender/terminar}" method="post" style="text-align: right;">
+					<div>
+						<button type="submit" class="btn btn-success">Terminar Venta<i class="fa fa-check"></i>
+						</button>
+						&nbsp;
+						<a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancelar venta&nbsp;<i
+								class="fa fa-trash"></i>
+						</a>
+						<br>
+						<br>
+
+				</form>
+	<a class="btn btn-warning" th:href="@{/}">Volver Atrás</a>
+
 			</div>
 		</div>
 	</main>

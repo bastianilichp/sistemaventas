@@ -1,7 +1,9 @@
-<nav th:fragment="navbar" xmlns:th="http://www.thymeleaf.org"
+<nav th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml"
 	class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-
-	<div id="menu">
+  <button class="navbar-toggler" type="button" id="botonMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+	<div id="menu" class="collapse navbar-collapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/vender/}">PUNTO DE VENTA</a>
