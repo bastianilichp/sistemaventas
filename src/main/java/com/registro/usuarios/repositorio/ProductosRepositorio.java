@@ -18,5 +18,8 @@ public interface ProductosRepositorio extends JpaRepository<Producto, Integer> {
     public List<Producto> findAll(String palabraClave);
 
     
+    @Query( value = "SELECT * FROM producto where stock <= 10 ", 
+    		  nativeQuery = true)
+    public List<Producto> findStock();
     
 }

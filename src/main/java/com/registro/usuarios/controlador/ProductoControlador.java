@@ -121,7 +121,18 @@ public class ProductoControlador {
 		ByteArrayInputStream stream = productoServicio.exportarExcel();
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "attachment; filename=stock_productos.xls");
+		headers.add("Content-Disposition", "attachment; filename=listado_productos_total.xls");
+
+		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
+
+	}
+	
+	@GetMapping("/exportarExcelStock")
+	public ResponseEntity<InputStreamResource> exportarExcelStock() throws Exception {
+		ByteArrayInputStream stream = productoServicio.exportarExcelStock();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=stock_productos_criticos.xls");
 
 		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
 
@@ -134,6 +145,15 @@ public class ProductoControlador {
 		return new ResponseEntity<>(baseResponde,HttpStatus.OK);
 
 		
+	}
+	
+	@GetMapping(value = "/stock")
+	public String mostrarStock(Model model) {
+		List<Producto> productos = productoServicio.listadoStock();
+		model.addAttribute("productos", productos);
+		
+
+		return "productos/ver_stock";
 	}
 
 }

@@ -32,8 +32,46 @@ public class ProductoServicio {
 		return productoRepositorio.findAll();
 	}
 	
+	public List<Producto> listadoStock(){		
+			return productoRepositorio.findStock();
+			}
+	
 	
 	public ByteArrayInputStream exportarExcel() throws Exception {
+		String[] columnas = { "Codigo Barra", "Descripción", "Precio Compra", "Precio Venta", "Stock" };
+		
+		Workbook workbook = new HSSFWorkbook();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		
+		Sheet sheet = workbook.createSheet("Productos");	
+		Row row = sheet.createRow(0);
+		
+		for (int i = 0; i < columnas.length; i++) {
+			Cell cell = row.createCell(i);
+			cell.setCellValue(columnas[i]);
+		}
+		List<Producto> listaP = productoRepositorio.findAll();
+		int numFila = 1;
+		for (Producto producto : listaP) {
+			row = sheet.createRow(numFila);
+			row.createCell(0).setCellValue(producto.getCodigo());
+			row.createCell(1).setCellValue(producto.getNombre());
+			row.createCell(2).setCellValue(producto.getPrecioCompra());
+			row.createCell(3).setCellValue(producto.getPrecioVenta());
+			row.createCell(4).setCellValue(producto.getStock());
+			numFila++;
+		}
+			
+		workbook.write(stream);
+		workbook.close();
+		
+		return new ByteArrayInputStream(stream.toByteArray());
+		
+		
+		
+	}
+	
+	public ByteArrayInputStream exportarExcelStock() throws Exception {
 		String[] columnas = { "Codigo Barra", "Descripción", "Precio Compra", "Precio Venta", "Stock" };
 		
 		Workbook workbook = new HSSFWorkbook();
@@ -46,7 +84,7 @@ public class ProductoServicio {
 			Cell cell = row.createCell(i);
 			cell.setCellValue(columnas[i]);
 		}
-		List<Producto> listaP = productoRepositorio.findAll();
+		List<Producto> listaP = productoRepositorio.findStock();
 		int numFila = 1;
 		for (Producto producto : listaP) {
 			row = sheet.createRow(numFila);

@@ -35,7 +35,9 @@ public class VenderControlador {
     private ProductosVendidosRepositorio productosVendidosRepository;
     
     @Autowired
-	 private ProductoServicio productoServicio;
+	private ProductoServicio productoServicio;
+    
+    private Integer descuento;
 
     @PostMapping(value = "/quitar/{indice}")
     public String quitarDelCarrito(@PathVariable int indice, HttpServletRequest request) {
@@ -57,6 +59,7 @@ public class VenderControlador {
         redirectAttrs
                 .addFlashAttribute("mensaje", "Venta cancelada")
                 .addFlashAttribute("clase", "info");
+        this.descuento=0;
         return "redirect:/vender/";
     }
 
@@ -82,8 +85,8 @@ public class VenderControlador {
             // Y lo guardamos
             productosVendidosRepository.save(productoVendido);
         }
-        ByteArrayInputStream stream = productoServicio.exportarExcel();
-    	
+        
+        ByteArrayInputStream stream = productoServicio.exportarExcel();    	
     	HttpHeaders headers = new HttpHeaders();
     	headers.add("Content-Disposition", "attachment; filename=stock_productos.xls");
     	
@@ -95,6 +98,7 @@ public class VenderControlador {
         redirectAttrs
                 .addFlashAttribute("mensaje", "Venta realizada correctamente")
                 .addFlashAttribute("clase", "success");
+        this.descuento=0;
         return "redirect:/vender/";
     }
 
@@ -102,14 +106,24 @@ public class VenderControlador {
     public String interfazVender(Model model, HttpServletRequest request) {
     	model.addAttribute("producto", new Producto());
         Integer total = 0;
+        Integer subTotal = 0;
+        
         ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
-        for (ProductoParaVender p: carrito) {        	      	
-        		total += p.getTotal();
-        	      	
+        for (ProductoParaVender p: carrito) {       	      	
+        		total += p.getTotal();    
+        		subTotal += p.getTotal();  
+        }        	
+        if(descuento != null) {
+        	total = total - descuento;
+        	
+        }else {
+        	descuento = 0;
         }
-        	
-        	
+        
+        model.addAttribute("descuento", descuento);
         model.addAttribute("total", total);
+        model.addAttribute("subTotal", subTotal);
+       
         return "vender/vender";
     }
 
@@ -158,20 +172,26 @@ public class VenderControlador {
     }
     
     @PostMapping(value = "/cantidad/{indice}")   
-    public String sumarCantidad(@RequestParam("cantidad") int cantidad,  HttpServletRequest request, @PathVariable int indice) {
-    	
+    public String sumarCantidad(@RequestParam("cantidad") int cantidad,  HttpServletRequest request, @PathVariable int indice) {    	
     	ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
     	carrito.get(indice).setCantidad(cantidad); 	
     	this.guardarCarrito(carrito, request);
     	return "redirect:/vender/";    	
     }
     
-    @PostMapping(value = "/total/{indice}")   
-    public String sumarTotal(@RequestParam("total") int total,  HttpServletRequest request,@PathVariable int indice) {    	
-    	ArrayList<ProductoParaVender> carrito = this.obtenerCarrito(request);
-    	carrito.get(indice).setTotalModificado(total);
-    	this.guardarCarrito(carrito, request);
+    @PostMapping(value = "/descuento")   
+    public String descTotal(@RequestParam("descuento") int descuento,  HttpServletRequest request,Model model) {    
+    	this.descuento = descuento;    	
     	return "redirect:/vender/";    	
     }
+
+	public Integer getDescuento() {
+		return descuento;
+	}
+	
+	public void setDescuento(Integer descuento) {
+		this.descuento = descuento;
+	}
+
     
 }
