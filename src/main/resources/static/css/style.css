@@ -1,30 +1,30 @@
 body {
-    /*Para la barra superior fija*/
-    padding-top: 70px;
-    /*Para la barra inferior fija*/
-    padding-bottom: 70px;
+	/*Para la barra superior fija*/
+	padding-top: 70px;
+	/*Para la barra inferior fija*/
+	padding-bottom: 70px;
 }
 
-.fondoPrincipal{
-    background-image: url('/images/logoblanco.png');
-    height:100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 1;
+.fondoPrincipal {
+	background-image: url('/images/logoblanco.png');
+	height: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	opacity: 1;
 }
 
 
-.banner{
-    background-image: url('/images/banner.png');
-    height:10%;
-   
-    background-repeat: no-repeat;
+.banner {
+	background-image: url('/images/banner.png');
+	height: 10%;
+
+	background-repeat: no-repeat;
 }
 
-.excel{
-    background-image: url('/images/excel.png');
-    
-    height:10%;
+.excel {
+	background-image: url('/images/excel.png');
+
+	height: 10%;
 }
 
 
@@ -43,7 +43,7 @@ body {
 
 .icono_usuario {
 	height: 48px !important;
-	width: 48px !important; 
+	width: 48px !important;
 	font-weight: bold !important;
 	font-size: 9px !important;
 	color: #fff !important;
@@ -65,7 +65,7 @@ body {
 }
 
 .cgr_background_circle_red {
-	height: 31px  !important;
+	height: 31px !important;
 	font-weight: bold !important;
 	font-size: 9px !important;
 	color: #fff !important;
@@ -76,18 +76,33 @@ body {
 }
 
 .btn_filtrar {
-  padding: 10px 20px;
-  background-color: rgb(128, 128, 128);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+	padding: 10px 20px;
+	background-color: rgb(128, 128, 128);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
+
 .btn_filtrar:hover {
-  background-color: rgb(128, 128, 128);
+	background-color: rgb(128, 128, 128);
 }
+
 .btn_filtrar:active {
-  background-color:rgb(128, 128, 128);
+	background-color: rgb(128, 128, 128);
 }
 
+.form_resumen {
+		width: 18%;    
+      padding: 16px;
+      border-radius: 10px;
+      margin: auto;
+      border: #000;
+      font-weight: bold !important;
+	font-size: 24px !important;
+}
 
+.form_border{
+	 border: #000;
+	
+}

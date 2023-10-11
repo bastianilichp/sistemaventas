@@ -19,5 +19,6 @@ public interface VentasRepositorio extends CrudRepository<Venta, Integer> {
 	 @Query("FROM Venta Where fechayhora BETWEEN :fechaDesde and :fechaHasta ORDER BY fechayhora DESC")
 		List<Venta> findFiltroFecha(@Param("fechaDesde") String fechaDesde, @Param("fechaHasta")String fechaHasta);
 	 	
-	
+	 @Query("FROM Venta WHERE fechayhora LIKE %?1% ORDER BY fechayhora DESC")
+		List<Venta> findResumen(String fecha);
 }
