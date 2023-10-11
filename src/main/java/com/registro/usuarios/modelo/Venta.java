@@ -12,12 +12,17 @@ public class Venta {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Integer id;
 	    private String fechaYHora;
+	    private Integer descuento;
 
 	    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
 	    private Set<ProductoVendido> productos;
 
-	    public Venta() {
+	    public Venta(Integer descuento) {
 	        this.fechaYHora = Utiles.obtenerFechaYHoraActual();
+	        this.descuento = descuento;
+	    }
+	    public Venta() {
+	    	
 	    }
 
 	    public Integer getId() {
@@ -51,6 +56,15 @@ public class Venta {
 	    public void setProductos(Set<ProductoVendido> productos) {
 	        this.productos = productos;
 	    }
+
+		public Integer getDescuento() {
+			return descuento;
+		}
+
+		public void setDescuento(Integer descuento) {
+			this.descuento = descuento;
+		}
+	    
 	
 
 }

@@ -21,6 +21,7 @@ public class ProductoVendido {
 	private String nombre;
 	private String codigo;
 	
+	
 	@ManyToOne
 	@JoinColumn
 	private Venta venta;
@@ -32,6 +33,7 @@ public class ProductoVendido {
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.venta = venta;
+		
 	}
 
 	public ProductoVendido() {
@@ -89,5 +91,8 @@ public class ProductoVendido {
 	public void setVenta(Venta venta) {
 		this.venta = venta;
 	}
+
+	
+	
 
 }

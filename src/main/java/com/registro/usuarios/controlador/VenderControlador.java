@@ -70,7 +70,7 @@ public class VenderControlador {
         if (carrito == null || carrito.size() <= 0) {
             return "redirect:/vender/";
         }
-        Venta v = ventasRepository.save(new Venta());
+        Venta v = ventasRepository.save(new Venta(this.descuento));
         // Recorrer el carrito
         for (ProductoParaVender productoParaVender : carrito) {
             // Obtener el producto fresco desde la base de datos
@@ -85,13 +85,7 @@ public class VenderControlador {
             // Y lo guardamos
             productosVendidosRepository.save(productoVendido);
         }
-        
-        ByteArrayInputStream stream = productoServicio.exportarExcel();    	
-    	HttpHeaders headers = new HttpHeaders();
-    	headers.add("Content-Disposition", "attachment; filename=stock_productos.xls");
     	
-    	
-
         // Al final limpiamos el carrito
         this.limpiarCarrito(request);
         // e indicamos una venta exitosa

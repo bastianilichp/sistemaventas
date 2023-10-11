@@ -41,6 +41,18 @@ body {
 	background-image: url('/images/circulo_verde_30_30.png');
 }
 
+.icono_usuario {
+	height: 48px !important;
+	width: 48px !important; 
+	font-weight: bold !important;
+	font-size: 9px !important;
+	color: #fff !important;
+	border: transparent !important;
+	background-position: center !important;
+	background-repeat: no-repeat;
+	background-image: url('/images/iconUser.png');
+}
+
 .cgr_background_circle_yellow {
 	height: 31px !important;
 	font-weight: bold !important;
@@ -61,6 +73,21 @@ body {
 	background-position: center !important;
 	background-repeat: no-repeat;
 	background-image: url('/images/circulo_rojo_30_30.png');
+}
+
+.btn_filtrar {
+  padding: 10px 20px;
+  background-color: rgb(128, 128, 128);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn_filtrar:hover {
+  background-color: rgb(128, 128, 128);
+}
+.btn_filtrar:active {
+  background-color:rgb(128, 128, 128);
 }
 
 
