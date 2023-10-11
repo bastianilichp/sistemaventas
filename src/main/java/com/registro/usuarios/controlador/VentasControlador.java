@@ -80,23 +80,20 @@ public class VentasControlador {
 		String hoy = sdf.format(new Date());
 		List<Venta> ventas = ventasRepositorio.findFiltroFecha(hoy + " 00:00:00", hoy + " 23:59:59");
 		Integer subTotal = 0;
-		Integer cantidad = 0;
+		
 		Integer desc = 0;
 
 		for (Venta v : ventas) {
 			subTotal += v.getTotal();
 			desc += v.getDescuento();
 
-			for (ProductoVendido pv : v.getProductos()) {
-				cantidad += pv.getCantidad();
-			}
+			
 		}
 		model.addAttribute("fecha", hoy);
 		model.addAttribute("subTotal", formatoNumero.format(subTotal));
 		model.addAttribute("desc", formatoNumero.format(desc));
 		model.addAttribute("total", formatoNumero.format(subTotal - desc));
-		model.addAttribute("cantidad", cantidad);
-
+		
 		return "ventas/resumen_ventas";
 	}
 
@@ -108,22 +105,19 @@ public class VentasControlador {
 		String fHasta = Utiles.separarFechas(fechaHasta);		
 		List<Venta> ventas = ventasRepositorio.findFiltroFecha(fDesde + " 00:00:00", fHasta + " 23:59:59");
 		Integer subTotal = 0;
-		Integer cantidad = 0;
+		
 		Integer desc = 0;
 
 		for (Venta v : ventas) {
 			subTotal += v.getTotal();
 			desc += v.getDescuento();
 
-			for (ProductoVendido pv : v.getProductos()) {
-				cantidad += pv.getCantidad();
-			}
 		}
 		model.addAttribute("fecha", fDesde +" / " +fHasta);
 		model.addAttribute("subTotal", formatoNumero.format(subTotal));
 		model.addAttribute("desc", formatoNumero.format(desc));
 		model.addAttribute("total", formatoNumero.format(subTotal - desc));
-		model.addAttribute("cantidad", cantidad);
+	
 		
 
 
