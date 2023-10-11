@@ -43,23 +43,11 @@ public class VentasControlador {
 
 
 	@GetMapping(value = "/")
-	public String mostrarVentas(Model model) {
-		String fecha = this.fechaDetalle;
-
+	public String mostrarVentas(Model model) {		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String hoy = sdf.format(new Date());
-
-		if (fecha == null) {
-			model.addAttribute("ventas", ventasRepositorio.findFiltroFecha(hoy + " 00:00:00", hoy + " 23:59:59"));
-		} else {
-			String[] fechaCompleta = fecha.split("-");
-			String fechaDesde = Utiles.separarFechas(fechaCompleta[0]);
-			String fechaHasta = Utiles.separarFechas(fechaCompleta[1]);
-
-			model.addAttribute("ventas",
-					ventasRepositorio.findFiltroFecha(fechaDesde + " 00:00:00", fechaHasta + " 23:59:59"));
-		}
-
+		model.addAttribute("ventas",
+					ventasRepositorio.findFiltroFecha(hoy + " 00:00:00", hoy + " 23:59:59"));
 		return "ventas/ver_ventas";
 	}
 
@@ -75,14 +63,12 @@ public class VentasControlador {
 	}
 
 	@PostMapping(value = "/filtrar")
-	public String filtrarFechaVentas(@RequestParam String fechaFiltro, Model model) {
-		this.fechaDetalle = fechaFiltro;
-		String[] fechaCompleta = fechaDetalle.split("-");
-		String fechaDesde = Utiles.separarFechas(fechaCompleta[0]);
-		String fechaHasta = Utiles.separarFechas(fechaCompleta[1]);
+	public String filtrarFechaVentas(@RequestParam String fechaDesde,@RequestParam String fechaHasta, Model model) {	
+		String fDesde = Utiles.separarFechas(fechaDesde);
+		String fHasta = Utiles.separarFechas(fechaHasta);
 		model.addAttribute("ventas",
-				ventasRepositorio.findFiltroFecha(fechaDesde + " 00:00:00", fechaHasta + " 23:59:59"));
-		model.addAttribute("fechasBusqueda", fechaDesde + "-" + fechaHasta);
+				ventasRepositorio.findFiltroFecha(fDesde + " 00:00:00", fHasta + " 23:59:59"));
+		
 
 		return "ventas/ver_ventas";
 	}
@@ -92,7 +78,7 @@ public class VentasControlador {
 		NumberFormat formatoNumero = NumberFormat.getNumberInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String hoy = sdf.format(new Date());
-		List<Venta> ventas = ventasRepositorio.findResumen(hoy);
+		List<Venta> ventas = ventasRepositorio.findFiltroFecha(hoy + " 00:00:00", hoy + " 23:59:59");
 		Integer subTotal = 0;
 		Integer cantidad = 0;
 		Integer desc = 0;
@@ -115,10 +101,12 @@ public class VentasControlador {
 	}
 
 	@PostMapping(value = "/filtroResumen")
-	public String resumenFiltrarVentas(@RequestParam String fechaVentas, Model model) {
+	public String resumenFiltrarVentas(@RequestParam String fechaDesde,@RequestParam String fechaHasta, Model model) {
 		NumberFormat formatoNumero = NumberFormat.getNumberInstance();
-		String fechaResumen = Utiles.separarFechas(fechaVentas);
-		List<Venta> ventas = ventasRepositorio.findResumen(fechaResumen);
+		
+		String fDesde= Utiles.separarFechas(fechaDesde);
+		String fHasta = Utiles.separarFechas(fechaHasta);		
+		List<Venta> ventas = ventasRepositorio.findFiltroFecha(fDesde + " 00:00:00", fHasta + " 23:59:59");
 		Integer subTotal = 0;
 		Integer cantidad = 0;
 		Integer desc = 0;
@@ -131,7 +119,7 @@ public class VentasControlador {
 				cantidad += pv.getCantidad();
 			}
 		}
-		model.addAttribute("fecha", fechaResumen);
+		model.addAttribute("fecha", fDesde +" / " +fHasta);
 		model.addAttribute("subTotal", formatoNumero.format(subTotal));
 		model.addAttribute("desc", formatoNumero.format(desc));
 		model.addAttribute("total", formatoNumero.format(subTotal - desc));
