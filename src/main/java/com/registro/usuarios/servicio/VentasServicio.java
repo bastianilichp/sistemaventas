@@ -26,7 +26,7 @@ public class VentasServicio {
 	VentasRepositorio ventasRepositorio;
 	
 	public ByteArrayInputStream exportarExcel() throws Exception {
-		String[] columnas = { "Fecha Venta","Codigo Barra", "Descripción","Cantidad","Precio Unidad", "Total"};
+		String[] columnas = { "Fecha Venta","Codigo Barra", "Descripción","Cantidad","Precio Unidad", "SubTotal", "Descuento", "Total"};
 		
 		Workbook workbook = new HSSFWorkbook();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -50,6 +50,8 @@ public class VentasServicio {
 				row.createCell(3).setCellValue(vp.getCantidad());	
 				row.createCell(4).setCellValue(vp.getPrecio());	
 				row.createCell(5).setCellValue(vp.getTotal());
+				row.createCell(6).setCellValue(vp.getVenta().getDescuento());
+				row.createCell(7).setCellValue(vp.getTotal() -  vp.getVenta().getDescuento());
 				
 				numFila++;
 			}
