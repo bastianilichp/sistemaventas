@@ -2,20 +2,21 @@ package com.registro.usuarios.servicio;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.registro.usuarios.modelo.Producto;
-import com.registro.usuarios.repositorio.ProductosRepositorio;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.registro.usuarios.controlador.dto.MasVendidosDTO;
+import com.registro.usuarios.modelo.Producto;
+import com.registro.usuarios.repositorio.ProductosRepositorio;
+import com.registro.usuarios.repositorio.ProductosVendidosRepositorio;
+
 
 
 @Service
@@ -23,6 +24,9 @@ public class ProductoServicio {
 	
 	@Autowired
 	private ProductosRepositorio productoRepositorio;
+	
+	@Autowired
+	private ProductosVendidosRepositorio productosVendidosRepositorio;
 	
 	public List<Producto> listAll(String palabraClave){
 		if(palabraClave != null) {
@@ -32,8 +36,8 @@ public class ProductoServicio {
 		return productoRepositorio.findAll();
 	}
 	
-	public List<Producto> listadoStock(){		
-			return productoRepositorio.findStock();
+	public List<Producto> listadoStock(Integer stockMenor){		
+			return productoRepositorio.findStock(stockMenor);
 			}
 	
 	
@@ -99,12 +103,13 @@ public class ProductoServicio {
 		workbook.write(stream);
 		workbook.close();
 		
-		return new ByteArrayInputStream(stream.toByteArray());
-		
-		
+		return new ByteArrayInputStream(stream.toByteArray());		
 		
 	}
 	
+	public List<MasVendidosDTO> liistadoMasVendido(){		
+		return productosVendidosRepositorio.findMasVendidos();
+		}
 
 
 }

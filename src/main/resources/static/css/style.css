@@ -5,13 +5,15 @@ body {
 	padding-bottom: 70px;
 }
 
-.fondoPrincipal {
+.fondoLito {
 	background-image: url('/images/logoblanco.png');
-	height: 100%;
-	background-size: cover;
 	background-repeat: no-repeat;
-	opacity: 1;
+	background-position: center;
+	width: 100%;
+	height: auto;
+	margin: auto;
 }
+
 
 
 .banner {
@@ -93,16 +95,16 @@ body {
 }
 
 .form_resumen {
-		width: 18%;    
-      padding: 16px;
-      border-radius: 10px;
-      margin: auto;
-      border: #000;
-      font-weight: bold !important;
+	width: 18%;
+	padding: 16px;
+	border-radius: 10px;
+	margin: auto;
+	border: #000;
+	font-weight: bold !important;
 	font-size: 24px !important;
 }
 
-.form_border{
-	 border: #000;
-	
+.form_border {
+	border: #000;
+
 }

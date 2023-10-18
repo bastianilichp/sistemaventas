@@ -69,6 +69,9 @@ public class VentasControlador {
 		model.addAttribute("ventas",
 				ventasRepositorio.findFiltroFecha(fDesde + " 00:00:00", fHasta + " 23:59:59"));
 		
+		model.addAttribute("fDesde",fechaDesde);
+		model.addAttribute("fHasta",fechaHasta);
+		
 
 		return "ventas/ver_ventas";
 	}
@@ -117,6 +120,8 @@ public class VentasControlador {
 		model.addAttribute("subTotal", formatoNumero.format(subTotal));
 		model.addAttribute("desc", formatoNumero.format(desc));
 		model.addAttribute("total", formatoNumero.format(subTotal - desc));
+		model.addAttribute("fDesde",fechaDesde);
+		model.addAttribute("fHasta",fechaHasta);
 	
 		
 

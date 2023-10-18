@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.registro.usuarios.controlador.dto.MasVendidosDTO;
 import com.registro.usuarios.modelo.Producto;
+import com.registro.usuarios.modelo.ProductoVendido;
 import com.registro.usuarios.repositorio.ProductosRepositorio;
 import com.registro.usuarios.servicio.CustomerService;
 import com.registro.usuarios.servicio.ProductoServicio;
@@ -122,38 +124,43 @@ public class ProductoControlador {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "attachment; filename=listado_productos_total.xls");
-
 		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
-
 	}
 	
 	@GetMapping("/exportarExcelStock")
 	public ResponseEntity<InputStreamResource> exportarExcelStock() throws Exception {
 		ByteArrayInputStream stream = productoServicio.exportarExcelStock();
-
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "attachment; filename=stock_productos_criticos.xls");
-
 		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
 
 	}
 
 	@GetMapping(value = "/cargaMasiva")
 	public ResponseEntity<BaseResponse> cargaMasiva(@RequestParam("file")MultipartFile importFile) {
-		BaseResponse baseResponde = customerService.importCustomerData(importFile);
-		
-		return new ResponseEntity<>(baseResponde,HttpStatus.OK);
-
-		
+		BaseResponse baseResponde = customerService.importCustomerData(importFile);		
+		return new ResponseEntity<>(baseResponde,HttpStatus.OK);		
 	}
 	
 	@GetMapping(value = "/stock")
-	public String mostrarStock(Model model) {
-		List<Producto> productos = productoServicio.listadoStock();
-		model.addAttribute("productos", productos);
-		
-
+	public String mostrarStock() {
 		return "productos/ver_stock";
 	}
+	
+	@GetMapping(value = "/buscarStockMenor")
+	public String buscarStockMenor(Model model, @RequestParam Integer stockMenor) {
+		List<Producto> productos = productoServicio.listadoStock(stockMenor);
+		model.addAttribute("productos", productos);
+		model.addAttribute("stockMenor", stockMenor);		
+		return "productos/ver_stock";
+	}
+	
+	@GetMapping(value = "/masVendidos")
+	public String masVendidos(Model model) {
+		List<MasVendidosDTO> masVendidos = productoServicio.liistadoMasVendido();
+		model.addAttribute("masVendidos", masVendidos);
+		return "productos/mas_vendido";
+	}
+	
 
 }
