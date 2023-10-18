@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
+
 public class ProductoVendido {
 
 	@Id
@@ -35,6 +36,15 @@ public class ProductoVendido {
 		this.venta = venta;
 		
 	}
+	
+
+	public ProductoVendido(Integer cantidad, String nombre, String codigo) {
+		super();
+		this.cantidad = cantidad;
+		this.nombre = nombre;
+		this.codigo = codigo;
+	}
+
 
 	public ProductoVendido() {
 		super();

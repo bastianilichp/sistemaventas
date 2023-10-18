@@ -1,16 +1,30 @@
-<footer th:fragment="pie" class="px-2 py-2 fixed-bottom bg-dark"  xmlns:th="http://www.w3.org/1991/xhtml">
-    <span class="text-muted">SISTEMA DE VENTAS 
-        
-        <a class="text-white" >BOTILLERIA DONDE EL LITO</a>
-    </span>
-    <script type="text/javascript">
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            const menu = document.querySelector("#menu"),
-                botonMenu = document.querySelector("#botonMenu");
-            if (menu) {
-                botonMenu.addEventListener("click", () => menu.classList.toggle("show"));
-            }
-        });
-    </script>
+<footer th:fragment="pie" class="px-2 py-2 fixed-bottom bg-dark" xmlns:th="http://www.w3.org/1991/xhtml">
+	<span class="text-muted">SISTEMA DE VENTAS
+
+		<a class="text-white">BOTILLERIA DONDE EL LITO</a>
+	</span>
+	<script type="text/javascript">
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const menu = document.querySelector("#menu"),
+				botonMenu = document.querySelector("#botonMenu");
+			if (menu) {
+				botonMenu.addEventListener("click", () => menu.classList.toggle("show"));
+			}
+		});
+
+		$(function () {
+			$('input[name="fechaDesde"]').daterangepicker({
+				singleDatePicker: true,
+				format: 'dd-MM-yyyy'
+			});
+		});
+		$(function () {
+			$('input[name="fechaHasta"]').daterangepicker({
+				singleDatePicker: true,
+				format: 'dd-MM-yyyy'
+			});
+		});
+
+	</script>
 </footer>

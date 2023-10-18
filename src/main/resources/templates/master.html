@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.w3.org/1991/xhtml">
+<html lang="es" xmlns:th="http://www.w3.org/1991/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:replace="layouts/encabezado :: encabezado">
 	<title>Botilleria Donde El Lito</title>
@@ -7,9 +7,9 @@
 	
 </head>
 
-<body class="fondoPrincipal">
+<body style="background-color:whitesmoke">
 	<div th:replace="layouts/navbar :: navbar"></div>
-	<main layout:fragment="contenido" role="main" class="container"></main>
+	<main layout:fragment="contenido" role="main" class="container" ></main>
 	<footer th:replace="layouts/pie :: pie"></footer>
 </body>
 
