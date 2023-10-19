@@ -162,5 +162,14 @@ public class ProductoControlador {
 		return "productos/mas_vendido";
 	}
 	
+	@GetMapping("/exportarExcelMasVendidos")
+	public ResponseEntity<InputStreamResource> exportarExcelMasVendido() throws Exception {
+		ByteArrayInputStream stream = productoServicio.exportarExcelMasVendido();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=ranking_mas_vendidos.xls");
+		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
+
+	}
+	
 
 }

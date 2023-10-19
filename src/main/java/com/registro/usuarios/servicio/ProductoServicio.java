@@ -106,6 +106,36 @@ public class ProductoServicio {
 		return new ByteArrayInputStream(stream.toByteArray());		
 		
 	}
+	public ByteArrayInputStream exportarExcelMasVendido() throws Exception {
+		String[] columnas = { "Cantidad", "Codigo", "Nombre" };
+		
+		Workbook workbook = new HSSFWorkbook();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		
+		Sheet sheet = workbook.createSheet("Ranking");	
+		Row row = sheet.createRow(0);
+		
+		for (int i = 0; i < columnas.length; i++) {
+			Cell cell = row.createCell(i);
+			cell.setCellValue(columnas[i]);
+		}
+		List<MasVendidosDTO> lista = productosVendidosRepositorio.findMasVendidos();
+		int numFila = 1;
+		for (MasVendidosDTO producto : lista) {
+			row = sheet.createRow(numFila);
+			row.createCell(0).setCellValue(producto.getCantidad());
+			row.createCell(1).setCellValue(producto.getCodigo());
+			row.createCell(2).setCellValue(producto.getNombre());
+			
+			numFila++;
+		}
+			
+		workbook.write(stream);
+		workbook.close();
+		
+		return new ByteArrayInputStream(stream.toByteArray());		
+		
+	}
 	
 	public List<MasVendidosDTO> liistadoMasVendido(){		
 		return productosVendidosRepositorio.findMasVendidos();
