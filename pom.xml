@@ -9,11 +9,11 @@
 		<version>2.5.7</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.registro.ventas</groupId>
-	<artifactId>com.registro.ventas</artifactId>
+	<groupId>sistema-punto-venta</groupId>
+	<artifactId>sistema-punto-venta</artifactId>
 	<version>1.0</version>
-	<name>registro-usuarios-spring-security</name>
-	<description>Demo project for Spring Boot</description>
+	<name>sistema-ventas-cv</name>
+	
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -38,10 +38,7 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
-		 <dependency>
-            <groupId>nz.net.ultraq.thymeleaf</groupId>
-            <artifactId>thymeleaf-layout-dialect</artifactId>
-        </dependency>
+
 
 
 		<dependency>
@@ -94,13 +91,7 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/org.springframework.mobile/spring-mobile-device -->
-		<dependency>
-			<groupId>org.springframework.mobile</groupId>
-			<artifactId>spring-mobile-device</artifactId>
-			<version>1.1.5.RELEASE</version>
-		</dependency>
+		
 
 
 	</dependencies>
