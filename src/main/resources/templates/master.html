@@ -1,15 +1,12 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.w3.org/1991/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns:th="http://www.w3.org/1991/xhtml" >
 
-<head th:replace="layouts/encabezado :: encabezado">
-	<title>Botilleria Donde El Lito</title>
-	 <link rel="shortcut icon" th:href="@{/images/ico_boti.png}">
-	
+<head th:replace="layouts/encabezado :: encabezado">	
 </head>
 
-<body style="background-color:whitesmoke">
+<body >
 	<div th:replace="layouts/navbar :: navbar"></div>
-	<main layout:fragment="contenido" role="main" class="container" ></main>
+	<main layout:fragment="contenido" role="main" class="container fondoLito"  ></main>
 	<footer th:replace="layouts/pie :: pie"></footer>
 </body>
 
