@@ -16,5 +16,13 @@ public interface ProductosVendidosRepositorio extends JpaRepository<ProductoVend
 	  		+ "order by cantidad desc" , nativeQuery=true)
 	  public List<MasVendidosDTO>findMasVendidos();
 	
+	@Query(value = "SELECT sum(cantidad) as cantidad, nombre , codigo  "
+	  		+ " from producto_vendido "
+	  		+ " WHERE nombre LIKE %?1% "
+	  		+ " or codigo LIKE %?1% " 
+	  		+ " Group by nombre, codigo "
+	  		+ "order by cantidad desc" , nativeQuery=true)
+	  public List<MasVendidosDTO>findMasVendidosFiltro(String filtroVendido);
+	
 	
 }

@@ -1,9 +1,9 @@
-<nav th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml"
+<nav th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<button class="navbar-toggler" type="button" id="botonMenu">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div id="menu" class="collapse navbar-collapse">
+	<div id="menu" class="collapse navbar-collapse" sec:authorize="hasRole('ROLE_USER')">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
 

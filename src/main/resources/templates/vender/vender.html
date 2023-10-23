@@ -26,10 +26,10 @@
 					<div class="invalid-feedback" th:errors="*{codigo}"></div>
 				</div>
 			</form>
-		
+		<br>
 			<div class="table-responsive">
 				<table class="table table-striped" style="font-size: 15px;">
-					<thead class="thead-dark">
+					<thead class="table-dark">
 						<tr>
 							<th>Nombre</th>
 							<th>Stock</th>
@@ -66,20 +66,20 @@
 				<table class="table table-borde" style="border-color: whitesmoke;">
 					<tr>
 						<td>							
-							<h4 style="text-align: center;" th:text="${'SubTotal: $' + subTotal}"></h4>
+							<h5 style="text-align: center;" th:text="${'SubTotal: $' + subTotal}"></h5>
 						</td>
 					</tr>	
 					<tr>
 						<td style="text-align: center;">		
 							<form th:action="@{/vender/descuento}" method="post">		
-							<h4>Desc.% <input style="width: 10%;" type="number" id="descuento" name="descuento" th:value="${descuento}"/></h4>
+							<h5>Desc.% <input style="width: 10%;" type="number" id="descuento" name="descuento" th:value="${descuento}"/></h5>
 									</form>
 						</td>
 
 					</tr>
 						<tr>
 						<td>							
-							<h3 style="text-align: center;" th:text="${'TOTAL: $' + total}"></h3>
+							<h5 style="text-align: center;" th:text="${'TOTAL: $' + total}"></h5>
 						</td>
 
 					</tr>

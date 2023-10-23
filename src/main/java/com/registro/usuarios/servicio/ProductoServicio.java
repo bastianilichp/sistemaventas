@@ -137,7 +137,10 @@ public class ProductoServicio {
 		
 	}
 	
-	public List<MasVendidosDTO> liistadoMasVendido(){		
+	public List<MasVendidosDTO> liistadoMasVendido(String filtroVendido){		
+		if(filtroVendido != null) {
+			return productosVendidosRepositorio.findMasVendidosFiltro(filtroVendido);
+		}
 		return productosVendidosRepositorio.findMasVendidos();
 		}
 

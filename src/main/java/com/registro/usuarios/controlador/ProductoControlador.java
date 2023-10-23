@@ -156,8 +156,8 @@ public class ProductoControlador {
 	}
 	
 	@GetMapping(value = "/masVendidos")
-	public String masVendidos(Model model) {
-		List<MasVendidosDTO> masVendidos = productoServicio.liistadoMasVendido();
+	public String masVendidos(Model model, @Param("filtroVendido") String filtroVendido) {
+		List<MasVendidosDTO> masVendidos = productoServicio.liistadoMasVendido(filtroVendido);
 		model.addAttribute("masVendidos", masVendidos);
 		return "productos/mas_vendido";
 	}
@@ -170,6 +170,16 @@ public class ProductoControlador {
 		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
 
 	}
+	@GetMapping(value = "/limpiarV")
+	public String limpiarV() {			
+		return "redirect:/productos/masVendidos";
+	}
+	
+	@GetMapping(value = "/limpiarP")
+	public String limpiarP() {			
+		return "redirect:/productos/mostrar";
+	}
+	
 	
 
 }

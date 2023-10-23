@@ -3,15 +3,26 @@ body {
 	padding-top: 70px;
 	/*Para la barra inferior fija*/
 	padding-bottom: 50px;
+	
+	
 }
 
 .fondoLito {
-	background-image: url('/images/logoblanco.png');
+	background-image: url('/images/logo_1.jpeg');
 	background-repeat: no-repeat;
-	background-position: center;
-	width: 100%;
-	height: auto;
-	margin: auto;
+	 background-position: center center;
+
+	
+}
+
+.fondoMaster {
+	background-image: url('/images/fondoLito.jpg');
+	 background-repeat: no-repeat; background-size: 100%; 
+	 background-position: center; 
+	padding-bottom: 50px;
+	
+
+	
 }
 
 
@@ -34,7 +45,7 @@ body {
 
 .cgr_background_circle_green {
 	height: 31px !important;
-	font-weight: bold !important;
+	font-weight: bold !;
 	font-size: 9px !important;
 	color: #fff !important;
 	border: transparent !important;
